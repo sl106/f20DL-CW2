@@ -111,10 +111,10 @@ def testset(model):
     predictions = model.predict(testdata)
     return inform(testlabel,predictions)
 
-def convolutionalNeuralNet(n_layers,neurons,state,figure,kernel): # as the matrix is always square one parameter serve for both
+def convolutionalNeuralNet(n_layers,neurons,state,figure,kernel): # as the kernel matrix is always square one parameter serve for both
     model = Sequential()
     print(input_shape)
-    model.add(Conv2D(44, kernel_size=kernel, padding='same', activation='relu', input_shape=input_shape))
+    model.add(Conv2D(44, kernel_size=kernel, padding='same', activation='relu', input_shape=input_shape)) #defining the layers of the CNN
     model.add(MaxPool2D())
     model.add(Conv2D(64, kernel_size=kernel, padding='same', activation='relu'))
     model.add(MaxPool2D())
@@ -134,9 +134,9 @@ def convolutionalNeuralNet(n_layers,neurons,state,figure,kernel): # as the matri
     trainlabelNP = np.asarray(trainlabel)
     trainlabelNP = trainlabelNP.reshape((trainlabel.shape[0], 1))
     x_train, x_test, y_train, y_test = train_test_split(traindataNP, trainlabelNP, test_size=0.2)
-    label_encoder = LabelEncoder()
+    label_encoder = LabelEncoder() #Encode the labels for the reduced dataset which solutions include and s before the class number
     y_train = label_encoder.fit_transform(y_train)
-    y_train = to_categorical(y_train, 10)
+    y_train = to_categorical(y_train, 10) #changing the class to an array of 10 places with all 0 except for the index of the class who which the sample belong
     print(x_train.shape)
     print(x_test.shape)
     print(y_train.shape)
