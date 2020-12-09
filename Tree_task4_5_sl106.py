@@ -23,16 +23,16 @@ X_train = pd.DataFrame(X_train)
 y_train = pd.DataFrame(y_train)
 
 X_train.insert(2304, "class", y_train, allow_duplicates=False)
-#
-#
+
+
 # #change class attribute to nominal type
-# # X_test["class"] = X_test["class"].map({0: "s0", 1: "s1", 2: "s2", 3: "s3", 4: "s4", 5: "s5", 6: "s6", 7: "s7", 8: "s8", 9: "s9"})
+X_test["class"] = X_test["class"].map({0: "s0", 1: "s1", 2: "s2", 3: "s3", 4: "s4", 5: "s5", 6: "s6", 7: "s7", 8: "s8", 9: "s9"})
 X_train["class"] = X_train["class"].map({0: "s0", 1: "s1", 2: "s2", 3: "s3", 4: "s4", 5: "s5", 6: "s6", 7: "s7", 8: "s8", 9: "s9"})
-#
+
 #combine the 4000 instance with old test set
 frame = [X_test, testSet]
 result = pd.concat(frame)
-#
+
 # #output to cvs file
 result.to_csv(r'resource/newData/xy_test9000_smpl.csv', index = False, header=True)
 X_train.to_csv(r'resource/newData/xy_train9000_smpl.csv', index = False, header=True)
